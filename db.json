@@ -1,0 +1,34 @@
+{
+  "contacts": [
+    {
+      "name": "Oleg",
+      "number": "068 93 55 23 851",
+      "id": 8
+    },
+    {
+      "name": "Ivan",
+      "number": "067 58 23 545",
+      "id": 9
+    },
+    {
+      "name": "Micl",
+      "number": "063 41 23 987",
+      "id": 10
+    },
+    {
+      "name": "Nemo",
+      "number": "066 52 53 554",
+      "id": 11
+    },
+    {
+      "name": "FEDIR",
+      "number": "1234567",
+      "id": 12
+    },
+    {
+      "name": "zi-12feodor@ukr.net",
+      "number": "1234",
+      "id": 13
+    }
+  ]
+}

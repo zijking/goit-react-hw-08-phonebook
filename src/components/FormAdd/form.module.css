@@ -1,0 +1,17 @@
+.form{
+/* display: flex; */
+max-width: 300px;
+border: 1px solid #000000;
+padding: 10px;
+}
+
+.input{
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.input > input{
+    padding: 5px;
+    
+}

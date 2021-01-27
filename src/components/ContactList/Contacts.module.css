@@ -1,0 +1,19 @@
+.contactList{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+p{
+    margin: 0;
+}
+
+.contactList > .item{
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+.contactItem{
+    min-width: 350px;
+    display: inline-flex;
+    justify-content: space-between;
+}
