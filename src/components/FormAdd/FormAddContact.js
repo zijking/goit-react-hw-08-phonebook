@@ -85,7 +85,7 @@ function FormAddContact() {
           name="name"
           onChange={onChange}
           id="name"
-          label="name"
+          label="Name"
           value={name}
           variant="outlined"
           placeholder="Enter contact Name"
@@ -96,7 +96,7 @@ function FormAddContact() {
           name="number"
           onChange={onChange}
           id="number"
-          label="number"
+          label="Number"
           value={number}
           variant="outlined"
           placeholder="Enter contact Number"

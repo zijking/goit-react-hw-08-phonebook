@@ -7,7 +7,7 @@ export default function SimpleContainer({ children }) {
   return (
     <React.Fragment>
       <CssBaseline />
-      <Container maxWidth="md">{children}</Container>
+      <Container maxWidth="lg">{children}</Container>
     </React.Fragment>
   );
 }
