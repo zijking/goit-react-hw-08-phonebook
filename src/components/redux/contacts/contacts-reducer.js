@@ -1,22 +1,23 @@
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
+import contactOperations from './contacts-operations';
 import actions from './contacts-actions';
 
 const items = createReducer([], {
-  [actions.addContactsSuccess]: (state, { payload }) => {
+  [contactOperations.addContacts.fulfilled]: (state, { payload }) => {
     // console.log(payload);
 
     const updateState = [...state, payload];
 
     return updateState;
   },
-  [actions.deleteContactsSuccess]: (state, { payload }) => {
-    // console.log('delete:', payload);
+  [contactOperations.deleteContacts.fulfilled]: (state, { payload }) => {
+    console.log('delete:', payload);
     const updateState = state.filter(({ id }) => id !== payload);
 
     return updateState;
   },
-  [actions.loadContactsSuccess]: (_, { payload }) => {
+  [contactOperations.loadContacts.fulfilled]: (_, { payload }) => {
     // console.log(payload);
     return payload;
   },
@@ -29,17 +30,17 @@ const filter = createReducer('', {
 });
 
 const load = createReducer(false, {
-  [actions.addContactsRequest]: () => true,
-  [actions.addContactsSuccess]: () => false,
-  [actions.addContactsError]: () => false,
+  [contactOperations.addContacts.pending]: () => true,
+  [contactOperations.addContacts.fulfilled]: () => false,
+  [contactOperations.addContacts.rejected]: () => false,
 
-  [actions.deleteContactsRequest]: () => true,
-  [actions.deleteContactsSuccess]: () => false,
-  [actions.deleteContactsError]: () => false,
+  [contactOperations.deleteContacts.pending]: () => true,
+  [contactOperations.deleteContacts.fulfilled]: () => false,
+  [contactOperations.deleteContacts.rejected]: () => false,
 
-  [actions.loadContactsRequest]: () => true,
-  [actions.loadContactsSuccess]: () => false,
-  [actions.loadContactsError]: () => false,
+  [contactOperations.loadContacts.pending]: () => true,
+  [contactOperations.loadContacts.fulfilled]: () => false,
+  [contactOperations.loadContacts.rejected]: () => false,
 });
 
 export default combineReducers({

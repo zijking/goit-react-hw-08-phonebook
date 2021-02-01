@@ -1,48 +1,33 @@
 import axios from 'axios';
-import actions from './contacts-actions';
+// import actions from './contacts-actions';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'http://localhost:3001';
+axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
 
 /**добавлення онтакту */
-const addContacts = (name, number) => dispatch => {
-  const newContact = {
-    name,
-    number,
-  };
 
-  dispatch(actions.addContactsRequest());
+const addContacts = createAsyncThunk(
+  'contacts/addContacts',
+  async newContact => {
+    const response = await axios.post('/contacts', newContact);
+    return response.data;
+  },
+);
 
-  axios
-    .post('/contacts', newContact)
-    .then(({ data }) => {
-      // console.log(data);
-      dispatch(actions.addContactsSuccess(data));
-    })
-    .catch(err => dispatch(actions.addContactsError(err)));
-};
-
-/**видалення контакту */
-const deleteContacts = idContact => dispatch => {
-  dispatch(actions.deleteContactsRequest());
-
-  axios
-    .delete(`/contacts/${idContact}`)
-    .then(data => {
-      // console.log('data: ', data);
-      dispatch(actions.deleteContactsSuccess(idContact));
-    })
-    .catch(err => dispatch(actions.deleteContactsError(err)));
-};
+const deleteContacts = createAsyncThunk(
+  'contacts/deleteContacts',
+  async idcontact => {
+    // eslint-disable-next-line no-unused-vars
+    const _ = await axios.delete(`/contacts/${idcontact}`);
+    return idcontact;
+  },
+);
 
 /**завантаження контактів з БД */
-const loadContacts = () => dispatch => {
-  dispatch(actions.loadContactsRequest());
-
-  axios
-    .get(`/contacts`)
-    .then(({ data }) => dispatch(actions.loadContactsSuccess(data)))
-    .catch(err => dispatch(actions.loadContactsError(err)));
-};
+const loadContacts = createAsyncThunk('contacts/loadContacts', async () => {
+  const res = await axios.get(`/contacts`);
+  return res.data;
+});
 
 const obj = {
   addContacts,

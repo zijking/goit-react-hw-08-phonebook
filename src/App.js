@@ -1,27 +1,30 @@
-import './App.css';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import ContactList from './components/ContactList';
-import Filter from './components/Filter';
-import ContactForm from './components/FormAdd';
-import contactsOperation from './components/redux/contacts/contacts-operations';
+import { Switch, Route, useRouteMatch } from 'react-router-dom';
+
+import AppBar from './components//AppBar';
+import ContactsView from './views/ContactsView';
+import Container from './components/Container';
+import HomeView from './views/HomeView';
+import LoginView from './views/LoginView';
+import RegistrationView from './views/RegistrationView';
 
 function App() {
-  const dispatch = useDispatch();
+  // const { pathname } = useLocation();
+  const { url } = useRouteMatch();
 
-  useEffect(() => {
-    dispatch(contactsOperation.loadContacts());
-  }, [dispatch]);
+  // console.log('location:', pathname);
+  // console.log('url: ', url);
 
   return (
-    <div className="App">
-      <h1>Phonebook</h1>
-      <ContactForm />
+    <Container>
+      <AppBar />
 
-      <h2>Contacts</h2>
-      <Filter />
-      <ContactList />
-    </div>
+      <Switch>
+        <Route exact path={`${url}`} component={HomeView} />
+        <Route path={`${url}contacts`} component={ContactsView} />
+        <Route path={`${url}login`} component={LoginView} />
+        <Route path={`${url}Registration`} component={RegistrationView} />
+      </Switch>
+    </Container>
   );
 }
 
