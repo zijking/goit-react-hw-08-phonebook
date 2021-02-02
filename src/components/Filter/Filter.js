@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import actions from '../redux/contacts/contacts-actions';
 import TextField from '@material-ui/core/TextField';
-import s from './Filter.module.css';
+// import s from './Filter.module.css';
 
 function Filter({ onChange, value }) {
   return (
