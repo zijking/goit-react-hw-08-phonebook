@@ -12,10 +12,17 @@ const user = createReducer(initUser, {
   [operationsUser.loginUser.fulfilled]: (state, { payload }) => {
     return { ...payload.user };
   },
+
   [operationsUser.registrationUser.fulfilled]: (state, { payload }) => {
     // console.log('payload', payload);
     return { ...payload.user };
   },
+
+  [operationsUser.getCurrentUser.fulfilled]: (state, { payload }) => {
+    // console.log('payloadCurrent: ', payload);
+    return { ...payload };
+  },
+
   [operationsUser.loginUser.rejected]: (state, payload) => {
     // console.log('operationsUser.loginUser.rejected');
     return state;
@@ -25,7 +32,7 @@ const user = createReducer(initUser, {
   },
 });
 
-const token = createReducer('', {
+const token = createReducer(null, {
   [operationsUser.loginUser.fulfilled]: (state, { payload }) => {
     return payload.token;
   },
@@ -53,6 +60,7 @@ const isLoggedIn = createReducer(false, {
   [operationsUser.logOutUser.fulfilled]: (state, payload) => {
     return false;
   },
+  [operationsUser.getCurrentUser.fulfilled]: (state, payload) => true,
 });
 
 export default combineReducers({

@@ -26,14 +26,14 @@ const useStyles = makeStyles(theme => ({
 
 export default function Login() {
   const classes = useStyles();
-  const [email, setEmail] = useState('edc@ukr.net');
+  const [email, setEmail] = useState('zijking@ukr.net');
   const [password, setPassword] = useState('qwer4321');
 
   const dispatch = useDispatch();
 
   const onSubmit = event => {
     event.preventDefault();
-    console.log(email, password);
+    // console.log(email, password);
 
     dispatch(operationsUser.loginUser({ email, password }));
     resetForm();

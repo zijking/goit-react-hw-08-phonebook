@@ -20,14 +20,14 @@
     "react-scripts": "4.0.1",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0",
     "uuid": "^8.3.1",
     "web-vitals": "^0.2.4",
     "yup": "^0.32.1"
   },
-  "homepage": "https://zijking.github.io/goit-react-hw-08-phonebook",
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "netlify deploy -p",
     "dev": "react-scripts start",
     "start": "json-server --watch db.json --port 3001",
     "build": "react-scripts build",
