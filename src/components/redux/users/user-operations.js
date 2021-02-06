@@ -20,7 +20,7 @@ const loginUser = createAsyncThunk('loginUser', async credentials => {
     const res = await axios.post('/users/login', credentials);
 
     // console.log('Login response: ', res);
-    // console.log('Login tokin: ', res.token);
+    // console.log('Login tokin loginUser: ', res.token);
 
     token.set(res.data.token);
     return res.data;
@@ -41,9 +41,10 @@ const registrationUser = createAsyncThunk(
       const res = await axios.post('/users/signup', credentials);
       //   console.log('Registration response', res.data);
       token.set(res.data.token);
+      // console.log('Login tokin registrationUser: ', res.token);
       return res.data;
     } catch (error) {
-      console.log('Registration response error', error.message);
+      // console.log('Registration response error', error.message);
       throw error;
     }
   },
@@ -59,18 +60,19 @@ const getCurrentUser = createAsyncThunk(
       const state = thunkAPI.getState();
       // console.log('state getCurrentUser:', state);
       const tokenPersister = state.auth.token;
-      // console.log(tokenPersister);
+      // console.log('tokenPersister', tokenPersister);
 
       if (tokenPersister === null) {
-        return thunkAPI.rejectWithValue();
+        return thunkAPI.rejectWithValue('');
       }
       token.set(tokenPersister);
 
       try {
-        const res = await await axios.get('/users/current');
+        const res = await axios.get('/users/current');
         // console.log('res currentUser: ', res);
         return res.data;
       } catch (error) {
+        // console.log('res currentUser: error');
         throw error;
       }
     } catch (error) {

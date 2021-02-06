@@ -28,7 +28,7 @@ const user = createReducer(initUser, {
     return state;
   },
   [operationsUser.logOutUser.fulfilled]: (state, action) => {
-    return initUser;
+    return { ...initUser };
   },
 });
 
@@ -41,6 +41,9 @@ const token = createReducer(null, {
   },
   [operationsUser.logOutUser.fulfilled]: (state, action) => {
     return null;
+  },
+  [operationsUser.getCurrentUser.fulfilled]: (s, p) => {
+    return s;
   },
 });
 
